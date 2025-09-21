@@ -4,7 +4,7 @@ A FastAPI-based REST API for managing Amazon product sales data from Kaggle. Thi
 
 ## Dataset Overview
 
-This project uses the Amazon Sales DB dataset from Kaggle, which contains comprehensive product and review information.
+This project uses the Amazon Sales DB dataset from Kaggle, which may include unrealistic values.
 
 ### Data Schema
 
