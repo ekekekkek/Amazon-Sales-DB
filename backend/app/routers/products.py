@@ -13,17 +13,14 @@ def get_products(
     db: Session = Depends(get_db), # Dependencies: each request gets a database session from db.py
     
     # Query paramters -- optional filters -- always match to model fields
-    category_leaf: Optional[str] = Query(None, description="The leaf of the category"),
-    category_path: Optional[str] = Query(None, description="The path of the category"),
+    category: Optional[str] = Query(None, description="Category")
 ):
     # Query the database
     query = db.query(models.Product)
 
     # Apply filters
-    if category_leaf:
-        query = query.filter(models.Product.category_leaf == category_leaf)
-    if category_path:
-        query = query.filter(models.Product.category_path == category_path)
+    if category:
+        query = query.filter(models.Product.category == category)
 
     # Execute the query
     products = query.all()

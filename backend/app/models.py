@@ -10,13 +10,12 @@ class Product(Base):
     __tablename__ = "products"
     product_id = Column(Text, primary_key = True)
     product_name = Column(Text, nullable=True)
-    category_path = Column(Text)
-    category_leaf = Column(Text)
-    discounted_price = Column(Numeric(12,2))
-    actual_price = Column(Numeric(12,2))
-    discount_percentage = Column(Numeric(5,2))
-    rating = Column(Numeric(3,2))
-    rating_count = Column(Integer)
+    category = Column(Text)
+    discounted_price = Column(Text)
+    actual_price = Column(Text)
+    discount_percentage = Column(Text)
+    rating = Column(Text)
+    rating_count = Column(Text)
     about_product = Column(Text)
     img_link = Column(Text)
     product_link = Column(Text)
@@ -25,11 +24,12 @@ class Review(Base):
     __tablename__ = "reviews"
     review_id = Column(Text, primary_key = True)
     product_id = Column(Text, ForeignKey("products.product_id"), nullable=False)
-    user_id = Column(Text, ForeignKey("users.user_id"), nullable=True)
-    user_name = Column(Text, nullable=True)
-    review_title = Column(Text, nullable=True)
+    user_id = Column(Text, ForeignKey("users.user_id"), nullable=False)
+    user_name = Column(Text)
+    review_title = Column(Text)
+    review_content = Column(Text)
 
 class User(Base):
     __tablename__ = "users"
     user_id = Column(Text, primary_key = True)
-    user_name = Column(Text, nullable=True)
+    user_name = Column(Text)
