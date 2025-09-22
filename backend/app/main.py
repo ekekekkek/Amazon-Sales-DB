@@ -1,10 +1,12 @@
 from fastapi import FastAPI
-from .routers import products
+from .routers import products, users, reviews
 
 app = FastAPI(title="Amazon Sales API", version="1.0.0")
 
 # Include the products router
 app.include_router(products.router)
+app.include_router(users.router)
+app.include_router(reviews.router)
 
 @app.get("/")
 def read_root():

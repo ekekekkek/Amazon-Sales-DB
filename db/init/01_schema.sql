@@ -21,7 +21,8 @@ CREATE TABLE public.reviews (
     product_id TEXT NOT NULL,
     user_id TEXT NOT NULL,
     user_name TEXT NOT NULL,
-    review_title TEXT NOT NULL
+    review_title TEXT NOT NULL,
+    review_content TEXT NOT NULL
 );
 
 -- Users

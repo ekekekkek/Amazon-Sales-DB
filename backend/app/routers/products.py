@@ -38,4 +38,26 @@ def get_product(
         raise HTTPException(status_code=404, detail="Product not found")
     return prod
 
-# Other endpoints to be added
+# Updates a product -- since we're updating an existing product, we use PUT instead of POST
+# returns a ProductOut object because we're returning the updated product
+# not schemas.ProductUpdate because ProductUpdate is the request body, not response body
+@router.put("/{product_id}", response_model=schemas.ProductOut) 
+def update_product(
+    product_id: str,
+    payload: schemas.ProductUpdate, # request body -- contains the field to update
+    db: Session = Depends(get_db)
+):
+    prod = db.get(models.Product, product_id)
+
+    if not prod:
+        raise HTTPException(status_code=404, detail="Product not found")
+    
+    for field, value in payload.model_dump().items():
+        # prod = product object from DB
+        # field = name of attribute to update e.g., product_name, category
+        # value = new value for the attribute
+        setattr(prod, field, value)
+
+    db.commit()
+    db.refresh(prod)
+    return prod
