@@ -41,6 +41,17 @@ class ProductUpdate(BaseModel):
     product_link: str = Field(None, description="The link to the product")
 
 # ADD: ProductCreate -- defines the input schema for the product
+class ProductCreate(BaseModel):
+    product_name: str = Field(None, description="The name of the product")
+    category: str = Field(None, description="Category")
+    discounted_price: str = Field(None, description="The discounted price of the product")
+    actual_price: str = Field(None, description="The actual price of the product")
+    discount_percentage: str = Field(None, description="The discount percentage of the product")
+    rating: str = Field(None, description="The rating of the product")
+    rating_count: str = Field(None, description="The number of ratings of the product")
+    about_product: str = Field(None, description="The description of the product")
+    img_link: str = Field(None, description="The link to the image of the product")
+    product_link: str = Field(None, description="The link to the product")
 
 class ReviewCreate(BaseModel):
     review_id: str = Field(..., description="The ID of the review")
